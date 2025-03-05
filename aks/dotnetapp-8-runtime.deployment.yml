@@ -1,0 +1,41 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: dotnetapp
+  labels:
+    app: dotnetapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dotnetapp
+  template:
+    metadata:
+        labels:
+            app: dotnetapp
+    spec:
+      volumes:
+        - name: var-run-aesmd
+          hostPath:
+            path: /var/run/aesmd
+      containers:
+        - name: dotnetapp
+          image: akssgxclusterregistry.azurecr.io/confidential-dotnetapp-sdk8:${CONTAINER_TAG}
+          resources:
+            limits:
+              sgx.intel.com/epc: 2Gi
+            requests:
+              sgx.intel.com/epc: 2Gi
+          volumeMounts:
+            - name: var-run-aesmd
+              mountPath: /var/run/aesmd
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
