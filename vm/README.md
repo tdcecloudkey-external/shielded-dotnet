@@ -36,7 +36,7 @@ Run below
 ```console
 docker run --device=/dev/sgx_enclave \
    -v /var/run/aesmd/aesm.socket:/var/run/aesmd/aesm.socket \
-   ghcr.io/nmwael/shielded-dotnet/dotnetapp-8-runtime-confidential:1.0.0 2>&1 | tee -a dotnetapp-8-runtime-confidential.log
+   ghcr.io/tdcecloudkey-external/shielded-dotnet/dotnetapp-8-runtime-confidential-notrace:1.0.0 2>&1 | tee -a dotnetapp-8-runtime-confidential.log
 ```
 
 check for expected application output
@@ -51,7 +51,7 @@ As issue only shows itself sporadicly simultanious executions and multiple itera
 
 In 3 seperate sessions run
 ```console
-./loopwait.sh 0 50 ghcr.io/nmwael/shielded-dotnet/dotnetapp-8-runtime-confidential:1.0.0
+./loopwait.sh 0 50 ghcr.io/tdcecloudkey-external/shielded-dotnet/dotnetapp-8-runtime-confidential-notrace:1.0.0
 ```
 
 When all sessions are finished

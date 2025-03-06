@@ -12,4 +12,4 @@ COPY --chown=1654 --from=chiseled /app .
 
 ENTRYPOINT ["./dotnetapp"]
 
-LABEL org.opencontainers.image.source=https://github.com/nmwael/shielded-dotnet
+LABEL org.opencontainers.image.source=https://github.com/tdcecloudkey-external/shielded-dotnet
