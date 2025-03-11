@@ -7,13 +7,11 @@ sys.brk.max_size = "1M"
 
 
 loader.uid = 1654
+# DOTNET ENV VARS BEGIN
 
-loader.env.DOTNET_GCTotalPhysicalMemory = "0x1C0000000"
-loader.env.DOTNET_GCHeapHardLimit = "0x1C0000000"
-loader.env.DOTNET_GCHeapCount = "1"
-loader.env.DOTNET_USE_POLLING_FILE_WATCHER = "1"
-loader.env.DOTNET_gcServer = "1"
-loader.env.DOTNET_RUNNING_IN_CONTAINER = "true"
+# DOTNET ENV VARS END
+
+# Disabled so DOTNET does not expose debug pipes.
 loader.env.DOTNET_EnableDiagnostics = "0"
 loader.log_level = "trace"
 sgx.preheat_enclave = true
